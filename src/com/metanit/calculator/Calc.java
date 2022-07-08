@@ -16,32 +16,35 @@ class Calc {
             }
 
             System.out.print("Введите первое число: ");
-            int a = scanner.nextInt();
+            String a = scanner.next();
             System.out.print("Введите второе число: ");
-            int b = scanner.nextInt();
-            System.out.println("a = " + a);
-            System.out.println("b = " + b);
+            String b = scanner.next();
+            System.out.println("Первое число = " + a);
+            System.out.println("Второе число = " + b);
+
+            int numA = getIntValue(a);
+            int numB = getIntValue(b);
 
             int result;
             switch (action) {
                 case (1) -> {
-                    result = a + b;
+                    result = numA + numB;
                     System.out.println("Ответ = " + result);
                 }
                 case (2) -> {
-                    result = a - b;
+                    result = numA - numB;
                     System.out.println("Ответ = " + result);
                 }
                 case (3) -> {
-                    result = a * b;
+                    result = numA * numB;
                     System.out.println("Ответ = " + result);
                 }
                 case (4) -> {
-                    if (b == 0) {
+                    if (numB == 0) {
                         System.out.println("На ноль делить нельзя");
                         break;
                     }
-                    result = a / b;
+                    result = numA / numB;
                     System.out.println("Ответ = " + result);
                 }
                 default -> {
@@ -50,6 +53,28 @@ class Calc {
                 }
             }
             System.out.println();
+        }
+    }
+
+    private static int getIntValue(String s) {
+        try {
+            return Integer.valueOf(s);
+        } catch (NumberFormatException ex) {
+            return switch (s) {
+                case ("I") -> 1;
+                case ("II") -> 2;
+                case ("III") -> 3;
+                case ("IV") -> 4;
+                case ("V") -> 5;
+                case ("VI") -> 6;
+                case ("VII") -> 7;
+                case ("VIII") -> 8;
+                case ("IX") -> 9;
+                case ("X") -> 10;
+                default -> throw new IllegalStateException("Unexpected value: " + s);
+            };
+        } catch (Exception ex) {
+            throw ex;
         }
     }
 }
